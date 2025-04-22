@@ -1,0 +1,8 @@
+Diagramas UML
+
+3. Desarrolla las versiones mejoradas de diagramas UML en base a las iteraciones y 
+mejoras realizadas. Deberás desarrollar: 
+• Vista escenario: diagrama de caso de uso --------------> https://lucid.app/lucidchart/48eb746e-7f1a-4fe6-b50d-b26a3e82b825/edit?viewport_loc=58%2C387%2C3824%2C1970%2C.Q4MUjXso07N&invitationId=inv_d6a6a227-a42f-4ca0-be33-1318079f44dc
+• Vista de Proceso: diagramas de actividad. --------------> https://lucid.app/lucidchart/f8a782e5-60a2-4530-b24e-0fae4c8f091f/edit?viewport_loc=1752%2C274%2C3422%2C1888%2C18_45&invitationId=inv_56a4112b-a637-47e2-8465-3d0fb2445719
+• Vista Lógica: diagrama de clases. --------------> https://lucid.app/lucidchart/ce903499-f258-451c-958e-8e3d7292f413/edit?viewport_loc=-31%2C-179%2C3440%2C1772%2CHWEp-vi-RSFO&invitationId=inv_47b8df87-0a0c-4111-8696-d0de8f4ce6f2
+• Modelo de base de datos inicial. --------------> Imagen MER ADJUNTA en carpeta

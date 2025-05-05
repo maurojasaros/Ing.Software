@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a Hotel Pacific Reef</title>
+    <style>
+        /* Reset Global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo para el cuerpo de la página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fb;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Contenedor principal */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Contenedor de formulario */
+        .form-container {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: left;
+        }
+
+        /* Título */
+        h1 {
+            font-size: 2em;
+            color: #2a8df2;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Estilo para los inputs */
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Estilo para los botones */
+        button {
+            padding: 12px 20px;
+            background-color: #2a8df2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #1a6ed1;
+        }
+
+        /* Estilo para el enlace de olvido de contraseña */
+        .forgot-password p {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .forgot-password a {
+            text-decoration: none;
+            color: #2a8df2;
+            font-size: 14px;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsividad para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 15px;
+                max-width: 90%;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            input[type="email"],
+            input[type="password"] {
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 14px;
+            }
+
+            .forgot-password p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="form-container">
+            <h1>Bienvenido a Hotel Pacific Reef</h1>
+
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <input type="email" id="correo" name="correo" placeholder="Ingrese su correo electrónico" required><br>
+                <input type="password" id="contraseña" name="contraseña" placeholder="Ingrese su contraseña" required><br>
+
+                <button type="submit">Iniciar sesión</button>
+                <a href="{% url 'registro' %}"><button type="button">Registrarse</button></a>
+            </form>
+
+            <div class="forgot-password">
+                <p>¿Olvidaste tu contraseña? 
+                    <a href="{% url 'recuperar' %}">Recuperar contraseña</a></p>
+            </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color: red;">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>

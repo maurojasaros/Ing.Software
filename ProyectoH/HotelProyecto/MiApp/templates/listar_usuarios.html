@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Usuarios</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fb;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #2a8df2;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        a.button {
+            display: inline-block;
+            background-color: #2a8df2;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        a.button:hover {
+            background-color: #1a6ed1;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .acciones {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .acciones a {
+            color: #2a8df2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .acciones a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            li {
+                font-size: 15px;
+            }
+
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form-container">
+        <h1>Listado de Usuarios</h1>
+
+        <div class="button-container">
+            <a href="{% url 'home' %}" class="button">Volver al Home</a>
+            <a href="{% url 'agregar_usuario' %}" class="button">Agregar Nuevo Usuario</a>
+        </div>
+
+        <ul>
+            {% for usuario in usuarios %}
+                <li>
+                    <div><strong>Nombre:</strong> {{ usuario.nombre }}</div>
+                    <div><strong>Email:</strong> {{ usuario.email }}</div>
+                    <div><strong>Teléfono:</strong> {{ usuario.telefono }}</div>
+                    <div class="acciones">
+                        <a href="{% url 'editar_usuario' usuario.id_usuario %}">Editar</a>
+                        <a href="{% url 'eliminar_usuario' usuario.id_usuario %}">Eliminar</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
+

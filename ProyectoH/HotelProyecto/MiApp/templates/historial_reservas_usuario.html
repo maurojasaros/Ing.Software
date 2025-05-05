@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Para compatibilidad con navegadores más antiguos -->
+    <title>Historial de Reservas - {{ usuario.nombre }}</title>
+    <style>
+        /* Reset Global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo para el cuerpo de la página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        /* Contenedor principal */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px;
+            margin-top: 20px;
+        }
+
+        /* Título */
+        h1 {
+            font-size: 28px;
+            color: #2a8df2;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo para la tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+            word-wrap: break-word; /* Evita que el texto se desborde */
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Estilo para los botones */
+        button {
+            padding: 12px 20px;
+            background-color: #2a8df2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1e7bc9;
+        }
+
+        /* Enlace */
+        a {
+            text-decoration: none;
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+
+            /* Estilo para la tabla en pantallas pequeñas */
+            table {
+                font-size: 14px;
+                overflow-x: auto;
+                display: block;
+            }
+
+            th, td {
+                text-align: center;
+                padding: 8px;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+
+        /* Responsividad para pantallas aún más pequeñas */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            th, td {
+                font-size: 12px; /* Hacer los textos más pequeños en pantallas muy pequeñas */
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Historial de Reservas de {{ usuario.nombre }}</h1>
+
+            {% if historial %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Acción</th>
+                            <th>Reserva ID</th>
+                            <th>Fecha Acción</th>
+                            <th>Habitación</th>
+                            <th>Fechas de Reserva</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for registro in historial %}
+                            <tr>
+                                <td>{{ registro.accion }}</td>
+                                <td>{{ registro.reserva.id_reserva }}</td>
+                                <td>{{ registro.fecha_accion }}</td>
+                                <td>{{ registro.reserva.habitacion.numero }} - {{ registro.reserva.habitacion.tipo }}</td>
+                                <td>{{ registro.reserva.fecha_inicio }} a {{ registro.reserva.fecha_fin }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No tienes historial de reservas.</p>
+            {% endif %}
+
+            <a href="{% url 'home' %}"><button type="button">Volver al Home</button></a>
+        </div>
+    </div>
+</body>
+</html>

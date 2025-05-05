@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajes Recibidos</title>
+    <style>
+        /* Reset Global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo para el cuerpo de la página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Contenedor principal */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Estilo para el contenedor de los mensajes */
+        .messages-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            text-align: left;
+        }
+
+        /* Título */
+        h2 {
+            font-size: 24px;
+            color: #2a8df2;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo para la lista de mensajes */
+        ul {
+            list-style-type: none; /* Eliminar los puntos por defecto */
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 25px; /* Mayor interlineado entre los mensajes */
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        li strong {
+            font-weight: bold;
+            color: #2a8df2;
+        }
+
+        li em {
+            font-style: italic;
+            color: #666;
+        }
+
+        /* Estilo para el enlace */
+        a {
+            text-decoration: none;
+            color: #2a8df2;
+            font-size: 16px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsividad para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .messages-container {
+                padding: 15px;
+                max-width: 90%;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            a {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="messages-container">
+        <h2>Mensajes recibidos</h2>
+        {% if mensajes %}
+            <ul>
+                {% for mensaje in mensajes %}
+                    <li>
+                        <strong>De: {{ mensaje.remitente.nombre }}</strong><br>
+                        {{ mensaje.mensaje }}<br>
+                        <em>{{ mensaje.fecha_envio|date:"d M Y H:i" }}</em>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No tienes mensajes.</p>
+        {% endif %}
+        <a href="{% url 'home' %}">Volver al inicio</a>
+    </div>
+</div>
+
+</body>
+</html>
+

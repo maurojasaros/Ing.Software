@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Mi Hotel{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+</head>
+<body>
+    <header>
+        <h1>{% block header %}Panel de Administración{% endblock %}</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'listar_usuarios' %}">Usuarios</a></li>
+                <li><a href="{% url 'listar_habitaciones' %}">Habitaciones</a></li>
+                <li><a href="{% url 'home' %}">Inicio</a></li>
+                <li><a href="{% url 'notificaciones' %}">Inicio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mi Hotel</p>
+    </footer>
+</body>
+</html>
+
+

@@ -1,0 +1,218 @@
+/* Reset Global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo para el cuerpo de la página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Estilo para formularios */
+.form-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+/* Títulos */
+h1 {
+    font-size: 28px;
+    color: #2a8df2;
+    margin-bottom: 20px;
+}
+
+/* Estilo uniforme para todos los inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+/* Estilo para los campos de entrada cuando están en foco */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus {
+    border-color: #2a8df2; /* Cambia el color del borde al enfocar */
+    outline: none; /* Elimina el borde de enfoque por defecto */
+}
+
+/* Botones */
+button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #2a8df2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transición suave para el hover */
+}
+
+button:hover {
+    background-color: #1e7bc9;
+}
+
+/* Formularios */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Ampliamos el espacio entre los campos */
+    width: 100%;
+}
+
+/* Estilo para las etiquetas de los formularios */
+label {
+    font-size: 14px;
+    margin-bottom: 5px; /* Añadimos un pequeño margen para las etiquetas */
+}
+
+/* Espaciado entre los campos de los formularios */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="date"] {
+    margin-bottom: 20px; /* Añadimos más espacio entre cada campo */
+}
+
+/* Mensajes de éxito o error */
+.messages {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.messages li {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px; /* Añadimos más margen entre las alertas */
+    font-weight: bold;
+}
+
+/* Mensaje de éxito */
+.messages li.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Mensaje de error */
+.messages li.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Estilo para el mensaje de no disponibilidad */
+.no-disponibilidad {
+    background-color: #f8d7da; /* Color de fondo rojo claro */
+    color: #721c24; /* Color del texto rojo oscuro */
+    padding: 10px;
+    border: 1px solid #f5c6cb; /* Borde suave */
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Estilo para los mensajes genéricos */
+.alert-container {
+    margin-top: 20px;
+}
+
+/* Estilo para los botones */
+button {
+    background-color: #2a8df2;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #1e7bc9;
+}
+
+/* Estilo para la estructura de las alertas */
+.messages li {
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Estilo para la página de Confirmar Reserva */
+
+/* Contenedor principal de la reserva */
+.confirmar-reserva-container {
+    display: flex;
+    flex-direction: column; /* Organiza los elementos en columna */
+    gap: 20px; /* Espacio entre los elementos */
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto; /* Centra el contenedor */
+}
+
+/* Estilo para cada par de información (etiqueta y valor) */
+.confirmar-reserva-item {
+    display: flex;
+    justify-content: space-between; /* Espacio entre el nombre y el valor */
+    font-size: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd; /* Añadimos una línea divisoria */
+}
+
+/* Estilo para los valores de la información */
+.confirmar-reserva-item span {
+    font-weight: bold; /* Resalta el valor */
+    color: #333;
+}
+
+/* Estilo para el total a pagar (última línea sin línea divisoria) */
+.confirmar-reserva-total {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2a8df2; /* Un color que destaque */
+    text-align: right; /* Alinea el total a la derecha */
+    margin-top: 20px;
+}
+

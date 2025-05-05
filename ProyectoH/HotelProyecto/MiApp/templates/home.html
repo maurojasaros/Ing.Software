@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a Hotel Pacific Reef</title>
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Bienvenido/a, {{ usuario.nombre }}. ¿Qué desea hacer?</h1>
+
+            <!-- Opciones para todos los usuarios -->
+            <a href="{% url 'consultar_disponibilidad' %}"><button type="button">Consultar disponibilidad</button></a>
+            <a href="{% url 'notificaciones' %}"><button type="button">Ver Notificaciones</button></a>
+            <a href="{% url 'historial_reservas_usuario' %}"><button type="button">Ver Historial de Reservas</button></a>
+            <a href="{% url 'perfil' %}"><button type="button">Perfil</button></a>
+            <a href="{% url 'listar_reservas' %}"><button type="button">Gestionar Reservas</button></a>
+
+            <!-- Botón solo para cliente -->
+            {% if usuario.tipo_usuario == 'cliente' %}
+                <a href="{% url 'enviar_mensaje' id_destinatario=6 %}">
+                    <button type="button">Enviar mensaje al administrador</button>
+                </a>
+            {% endif %}
+
+            <!-- Botones solo para administrador -->
+            {% if usuario.tipo_usuario == 'admin' %}
+                <a href="{% url 'mensajes_admin' %}">
+                    <button type="button">Ver Mensajes de Clientes</button>
+                </a>
+                <a href="{% url 'enviar_mensaje_admin' %}">
+                    <button type="button">Enviar mensaje a un usuario</button>
+                </a>
+                <a href="{% url 'listar_habitaciones' %}">
+                    <button type="button">Gestionar Habitaciones</button>
+                </a>
+                <a href="{% url 'listar_usuarios' %}">
+                    <button type="button">Gestionar Usuarios</button>
+                </a>
+            {% endif %}
+
+            <!-- Mostrar mensajes del sistema -->
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="{{ message.tags }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <br><br>
+            <a href="{% url 'cerrar_sesion' %}"><button type="button">Cerrar sesión</button></a>
+        </div>
+    </div>
+</body>
+</html>

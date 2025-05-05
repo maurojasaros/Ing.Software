@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificaciones</title>
+    <style>
+        /* Reset Global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo para el cuerpo de la página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Títulos */
+        h1 {
+            font-size: 28px;
+            color: #2a8df2;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo para las notificaciones */
+        .notification {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        .notification:hover {
+            background-color: #f0f8ff;
+        }
+
+        /* Estilo para los mensajes */
+        .notification p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        /* Fecha y estado */
+        .notification small {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .notification .estado {
+            font-weight: bold;
+            color: #2a8df2;
+        }
+
+        /* Enlace para volver */
+        a {
+            display: block;
+            text-align: center;
+            color: #2a8df2;
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            color: #1e7bc9;
+        }
+
+        /* Responsividad */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .notification p {
+                font-size: 14px;
+            }
+
+            .notification small {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Notificaciones</h1>
+
+        <!-- Verificación de si existen notificaciones -->
+        {% if notificaciones %}
+            <div>
+                {% for notificacion in notificaciones %}
+                    <div class="notification">
+                        <p><strong>Mensaje:</strong> {{ notificacion.mensaje }}</p>
+                        <small><strong>Enviado:</strong> {{ notificacion.fecha_envio|date:"d M Y H:i" }}</small>
+                        <p><span class="estado">Estado:</span> {{ notificacion.estado }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No tienes notificaciones nuevas.</p>
+        {% endif %}
+
+        <!-- Verificación adicional para depuración -->
+        <p>Notificaciones encontradas: {{ notificaciones|length }}</p>
+
+        <br>
+        <a href="{% url 'home' %}">Volver al inicio</a>
+    </div>
+</body>
+</html>

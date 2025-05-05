@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Reservas</title>
+    <style>
+        /* Reset Global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo para el cuerpo de la página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Contenedor principal */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Estilo para el formulario */
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            text-align: left;
+        }
+
+        /* Títulos */
+        h1 {
+            font-size: 28px;
+            color: #2a8df2;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo para la lista de reservas */
+        ul {
+            list-style-type: none; /* Eliminar los puntos por defecto */
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 15px; /* Mayor interlineado entre los elementos */
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        li strong {
+            font-weight: bold;
+            color: #2a8df2;
+        }
+
+        /* Estilo para el botón */
+        button {
+            padding: 10px 15px;
+            margin: 10px 0;
+            background-color: #2a8df2;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1e7bc9;
+        }
+
+        /* Responsividad para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 20px;
+                max-width: 90%;
+            }
+
+            button {
+                width: 100%;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form-container">
+        <h1>
+            {% if usuario.tipo_usuario == 'admin' %}
+                Gestión de todas las reservas
+            {% else %}
+                Reservas de {{ usuario.nombre }}
+            {% endif %}
+        </h1>
+
+        {% if reservas %}
+            <ul>
+                {% for reserva in reservas %}
+                    <li>
+                        {% if usuario.tipo_usuario == 'admin' %}
+                            <strong>Usuario:</strong> {{ reserva.usuario.nombre }} |
+                        {% endif %}
+                        <strong>Habitación:</strong> {{ reserva.habitacion.numero }} |
+                        <strong>Estado:</strong> {{ reserva.estado_reserva }} |
+                        <strong>Desde:</strong> {{ reserva.fecha_inicio }} |
+                        <strong>Hasta:</strong> {{ reserva.fecha_fin }}
+                        {% if reserva.estado_reserva != 'anulada' %}
+                            <a href="{% url 'confirmar_anulacion' reserva.id_reserva %}">
+                                <button type="button">Anular Reserva</button>
+                            </a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay reservas registradas.</p>
+        {% endif %}
+
+        <a href="{% url 'home' %}"><button type="button">Volver al inicio</button></a>
+    </div>
+</div>
+
+</body>
+</html>

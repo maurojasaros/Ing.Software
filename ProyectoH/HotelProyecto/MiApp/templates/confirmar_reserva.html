@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva Confirmada</title>
+    <style>
+        /* Reset Global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Cuerpo de la página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Contenedor principal de la confirmación */
+        .confirmar-reserva-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: auto;
+        }
+
+        /* Título principal */
+        h1 {
+            font-size: 2rem;
+            color: #28a745;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Elementos de la reserva */
+        .confirmar-reserva-item {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .total-pago {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #28a745;
+        }
+
+        /* Estilo para los mensajes de error */
+        .error-box {
+            background-color: #ffe5e5;
+            color: #b30000;
+            border: 1px solid #ff9999;
+            padding: 1rem;
+            margin: 2rem auto;
+            max-width: 700px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        /* Estilo para los enlaces */
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007BFF;
+            font-size: 1rem;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilos responsivos para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .confirmar-reserva-container {
+                padding: 15px;
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .confirmar-reserva-item {
+                font-size: 0.9rem;
+            }
+
+            .total-pago {
+                font-size: 1rem;
+            }
+
+            a {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    {% if error %}
+        <div class="error-box">
+            <h2>Error al realizar la reserva</h2>
+            <p>{{ error }}</p>
+            <a href="{% url 'home' %}">Volver al inicio</a>
+        </div>
+    {% else %}
+        <div class="confirmar-reserva-container">
+            <h1>¡Reserva Confirmada!</h1>
+
+            <div class="confirmar-reserva-item">
+                <strong>Habitación:</strong> {{ habitacion.tipo }}
+            </div>
+            <div class="confirmar-reserva-item">
+                <strong>Precio por noche:</strong> ${{ habitacion.precio_noche }}
+            </div>
+            <div class="confirmar-reserva-item">
+                <strong>Fecha de entrada:</strong> {{ fecha_entrada }}
+            </div>
+            <div class="confirmar-reserva-item">
+                <strong>Fecha de salida:</strong> {{ fecha_salida }}
+            </div>
+            <div class="confirmar-reserva-item">
+                <strong>Estado de la reserva:</strong> {{ reserva.estado_reserva }}
+            </div>
+            <div class="confirmar-reserva-item total-pago">
+                <strong>Total a pagar:</strong> ${{ total_pago }}
+            </div>
+
+            <p>¡Gracias por reservar con nosotros!</p>
+            <a href="{% url 'home' %}">Volver al inicio</a>
+        </div>
+    {% endif %}
+
+    {% if messages %}
+    <div class="alert-container">
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+</body>
+</html>

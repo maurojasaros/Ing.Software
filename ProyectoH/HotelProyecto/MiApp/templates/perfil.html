@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil</title>
+    <style>
+        /* Reset Global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo para el cuerpo de la página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        /* Contenedor principal */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Estilo para el formulario */
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: left;
+        }
+
+        /* Títulos */
+        h1 {
+            font-size: 28px;
+            color: #2a8df2;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo uniforme para todos los inputs */
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+
+        /* Estilo para los campos de entrada cuando están en foco */
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
+            border-color: #2a8df2; /* Cambia el color del borde al enfocar */
+            outline: none; /* Elimina el borde de enfoque por defecto */
+        }
+
+        /* Botones */
+        button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #2a8df2;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Transición suave para el hover */
+        }
+
+        button:hover {
+            background-color: #1e7bc9;
+        }
+
+        /* Responsividad para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 20px;
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Mi perfil</h1>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" value="{{ usuario.nombre }}" required>
+
+                <label for="correo">Correo electrónico</label>
+                <input type="email" id="correo" name="correo" value="{{ usuario.correo }}" required>
+
+                <label for="telefono">Número telefónico</label>
+                <input type="tel" id="telefono" name="telefono" value="{{ perfil.telefono|default:'' }}">
+
+                <label for="direccion">Dirección</label>
+                <input type="text" id="direccion" name="direccion" value="{{ perfil.direccion|default:'' }}">
+
+                <label for="preferencias">Preferencias</label>
+                <input type="text" id="preferencias" name="preferencias" value="{{ perfil.preferencias|default:'' }}">
+
+                <button type="submit">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+

@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Disponibilidad</title>
+    <style>
+        /* Reset global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Cuerpo de la página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        /* Contenedor del formulario */
+        .form-container {
+            text-align: center;
+        }
+
+        /* Títulos */
+        h1, h2 {
+            color: #007BFF;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        /* Formulario de fechas */
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 0.8rem 1.5rem;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Lista de habitaciones disponibles */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilo para los mensajes */
+        .messages {
+            margin-top: 20px;
+            background-color: #ffeb3b;
+            padding: 1rem;
+            border-radius: 5px;
+            color: #333;
+        }
+
+        /* Estilo responsivo */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                width: 90%;
+            }
+
+            h1, h2 {
+                font-size: 1.5rem;
+            }
+
+            input[type="date"], button {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="form-container">
+            <h1>Consultar disponibilidad de habitaciones</h1>
+
+            <form method="GET" action="{% url 'consultar_disponibilidad' %}">
+                <label for="fecha-entrada">Fecha de entrada:</label>
+                <input type="date" id="fecha-entrada" name="fecha-entrada" required>
+
+                <label for="fecha-salida">Fecha de salida:</label>
+                <input type="date" id="fecha-salida" name="fecha-salida" required>
+
+                <button type="submit">Consultar disponibilidad</button>
+                
+                
+                <a href="{% url 'home' %}">
+                    <button type="button" style="margin-top: 15px;">Volver al Home</button>
+                </a>
+                
+            </form>
+
+            {% if habitaciones_disponibles %}
+                <h2>Habitaciones disponibles</h2>
+                <ul>
+                    {% for habitacion in habitaciones_disponibles %}
+                        <li>
+                            Habitación {{ habitacion.numero }} - {{ habitacion.tipo }} (Disponible)
+                            <form method="get" action="{% url 'reservar' habitacion.id_habitacion %}" style="display:inline;">
+                                <input type="hidden" name="fecha_entrada" value="{{ fecha_entrada }}">
+                                <input type="hidden" name="fecha_salida" value="{{ fecha_salida }}">
+                                <button type="submit">Reservar</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% elif not habitaciones_disponibles and fecha_entrada and fecha_salida %}
+                <p>No hay habitaciones disponibles para esas fechas.</p>
+            {% endif %}
+
+            {% if messages %}
+                <div class="messages">
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>

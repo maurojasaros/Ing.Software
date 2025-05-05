@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Hotel Pacific Reef</title>
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <div class="form-container">
+            <h1>Registro de Usuario</h1>
+
+            <form method="POST" action="{% url 'registro' %}">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                <div>
+                    {{ form.nombre.label_tag }}
+                    {{ form.nombre }}
+                    {{ form.nombre.errors }}
+                </div>
+
+                <div>
+                    {{ form.correo.label_tag }}
+                    {{ form.correo }}
+                    {{ form.correo.errors }}
+                </div>
+
+                <div>
+                    {{ form.contraseña.label_tag }}
+                    {{ form.contraseña }}
+                    {{ form.contraseña.errors }}
+                </div>
+
+                <div>
+                    {{ form.confirmar_contraseña.label_tag }}
+                    {{ form.confirmar_contraseña }}
+                    {{ form.confirmar_contraseña.errors }}
+                </div>
+
+                <button type="submit">Registrarse</button>
+            </form>
+
+            <div class="volver-login">
+                <p>¿Ya tienes una cuenta? <a href="{% url 'login' %}">Iniciar sesión</a></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

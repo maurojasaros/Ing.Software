@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Habitaciones</title>
+    <style>
+        /* Reset global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo del cuerpo de la página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Títulos */
+        h1 {
+            color: #007bff;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        /* Lista de habitaciones */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Enlaces dentro de la lista */
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Botón de "Volver al Home" */
+        .btn-back-home {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #95a5a6;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+        .btn-back-home:hover {
+            background-color: #7f8c8d;
+        }
+
+        /* Estilo para el enlace de agregar habitación */
+        .btn-add-room {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-add-room:hover {
+            background-color: #218838;
+        }
+
+        /* Estilo responsivo */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            li {
+                font-size: 0.9rem;
+            }
+
+            .btn-back-home, .btn-add-room {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Listado de Habitaciones</h1>
+
+        <a href="{% url 'agregar_habitacion' %}" class="btn-add-room">Agregar Nueva Habitación</a>
+
+        <ul>
+            {% for habitacion in habitaciones %}
+                <li>
+                    {{ habitacion.numero }} - {{ habitacion.tipo }} - {{ habitacion.estado }} 
+                    <a href="{% url 'editar_habitacion' habitacion.id_habitacion %}">Editar</a> | 
+                    <a href="{% url 'eliminar_habitacion' habitacion.id_habitacion %}">Eliminar</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'home' %}" class="btn-back-home">Volver al Home</a>
+    </div>
+
+</body>
+</html>
+

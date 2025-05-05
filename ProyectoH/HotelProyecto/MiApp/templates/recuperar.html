@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Contraseña</title>
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Recuperar Contraseña</h1>
+            <form action="#">
+                <input type="email" placeholder="Ingresa tu correo electrónico" required>
+                <button type="submit">Enviar enlace de recuperación</button>
+            </form>
+
+            <div class="forgot-password">
+                <p>¿Ya tienes cuenta?</p>
+                <a href="{% url 'login' %}"><button type="button">Inicia Sesión</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

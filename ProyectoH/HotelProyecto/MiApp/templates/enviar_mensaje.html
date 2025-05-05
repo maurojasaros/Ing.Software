@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Mensaje</title>
+    <style>
+        /* Reset Global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo para el cuerpo de la página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fb;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Contenedor principal */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Contenedor de formulario */
+        .form-container {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        /* Título */
+        h1 {
+            font-size: 2em; /* Usar em para mayor flexibilidad */
+            color: #2a8df2;
+            margin-bottom: 20px;
+            text-align: center; /* Centrado para mejor visualización en pantallas pequeñas */
+        }
+
+        /* Estilo para las etiquetas de los formularios */
+        label {
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: block;
+            color: #555;
+        }
+
+        /* Estilo para los inputs y selects */
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Estilo para el botón */
+        button {
+            padding: 10px 20px;
+            background-color: #2a8df2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #1a6ed1;
+        }
+
+        /* Estilo para el enlace */
+        a {
+            text-decoration: none;
+            color: #2a8df2;
+            font-size: 16px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsividad para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 15px;
+                max-width: 90%;
+            }
+
+            h1 {
+                font-size: 1.8em; /* Ajustar el tamaño del título */
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em; /* Ajustar aún más el tamaño en pantallas muy pequeñas */
+            }
+
+            .form-container {
+                padding: 10px;
+            }
+
+            button {
+                width: 100%;
+                font-size: 14px;
+            }
+
+            label {
+                font-size: 14px; /* Reducir el tamaño de las etiquetas */
+            }
+
+            textarea {
+                font-size: 14px; /* Ajustar tamaño de texto dentro del textarea */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form-container">
+        <h1>Enviar mensaje a {{ destinatario.nombre }}</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            <label for="mensaje">Mensaje:</label>
+            <textarea name="mensaje" id="mensaje" rows="5" required></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+
+        <br>
+        <a href="{% url 'home' %}">Volver al inicio</a>
+    </div>
+</div>
+
+</body>
+</html>

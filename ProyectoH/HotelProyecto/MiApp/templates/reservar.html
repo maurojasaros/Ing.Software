@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservar Habitación</title>
+    <style>
+        /* Reset global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Cuerpo de la página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 100%;
+            width: 90%;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        /* Títulos */
+        h1 {
+            color: #007BFF;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Información de la reserva */
+        p {
+            font-size: 1rem;
+            margin: 1rem 0;
+        }
+
+        strong {
+            color: #007BFF;
+        }
+
+        /* Estilo del formulario */
+        form {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        button {
+            padding: 0.8rem 1.5rem;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+            width: 100%; /* Botón ocupa todo el ancho en pantallas pequeñas */
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilo para los mensajes */
+        .alert-container {
+            margin-top: 20px;
+            background-color: #ffeb3b;
+            padding: 1rem;
+            border-radius: 5px;
+            color: #333;
+        }
+
+        .messages {
+            list-style-type: none;
+        }
+
+        .messages li {
+            padding: 0.5rem;
+            background-color: #fff;
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilo responsivo */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            button {
+                font-size: 1.2rem;
+                padding: 1rem 0; /* Aumentar el tamaño del botón en pantallas pequeñas */
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.3rem;
+            }
+
+            button {
+                font-size: 1rem;
+                padding: 0.8rem 0;
+            }
+
+            p {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Confirmar Reserva</h1>
+
+        <p><strong>Habitación:</strong> {{ habitacion.tipo }}</p>
+        <p><strong>Precio por noche:</strong> ${{ habitacion.precio_por_noche }}</p>
+        <p><strong>Fecha de entrada:</strong> {{ fecha_entrada }}</p>
+        <p><strong>Fecha de salida:</strong> {{ fecha_salida }}</p>
+        <p><strong>Noches:</strong> {{ dias }}</p>
+        <p><strong>Total a pagar:</strong> ${{ total }}</p>
+
+        <form method="POST" action="{% url 'confirmar_reserva' habitacion.id_habitacion %}">
+            {% csrf_token %}
+            <input type="hidden" name="fecha_entrada" value="{{ fecha_entrada|date:'Y-m-d' }}">
+            <input type="hidden" name="fecha_salida" value="{{ fecha_salida|date:'Y-m-d' }}">
+            <p>Habitación: {{ habitacion.tipo }}</p>
+            <p>Precio por noche: ${{ habitacion.precio_noche }}</p>
+            <p>Desde: {{ fecha_entrada }}</p>
+            <p>Hasta: {{ fecha_salida }}</p>
+            <p>Total a pagar: ${{ total }}</p>
+            <button type="submit">Confirmar y reservar</button>
+        </form>
+
+        {% if messages %}
+        <div class="alert-container">
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
+
+

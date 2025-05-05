@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajes de Clientes</title>
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Mensajes de los Clientes</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>De</th>
+                    <th>Mensaje</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mensaje in mensajes %}
+                    <tr class="{% if mensaje.estado == 'no leído' %}unread{% endif %}">
+                        <td>{{ mensaje.usuario.nombre }}</td>
+                        <td>{{ mensaje.mensaje }}</td>
+                        <td>{{ mensaje.fecha_envio }}</td>
+                        <td>{{ mensaje.estado }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br>
+        <a href="{% url 'home' %}">Volver al inicio</a>
+    </div>
+
+    <style>
+        .unread {
+            background-color: #f8d7da; /* Resalta los mensajes no leídos */
+        }
+    </style>
+</body>
+</html>
+
+

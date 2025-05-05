@@ -1,0 +1,22 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <h1>Mis Reservas</h1>
+
+    {% if reservas %}
+        <ul>
+            {% for reserva in reservas %}
+                <li>
+                    <p>Habitación {{ reserva.habitacion.numero }} | Fecha de entrada: {{ reserva.fecha_inicio }} | Fecha de salida: {{ reserva.fecha_fin }}</p>
+                    <p>Estado: {{ reserva.estado_reserva }}</p>
+                    <form action="{% url 'confirmar_anulacion' reserva.id_reserva %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Anular Reserva</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tienes reservas confirmadas.</p>
+    {% endif %}
+{% endblock %}

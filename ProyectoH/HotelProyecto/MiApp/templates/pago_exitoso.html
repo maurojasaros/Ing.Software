@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago Exitoso</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #2a8df2;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background-color: #2a8df2;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #1e7bc9;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 20px;
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>¡Gracias por su pago!</h1>
+            <p>Su reserva ha sido confirmada exitosamente.</p>
+            <ul>
+                <li><strong>Habitación:</strong> {{ reserva.habitacion.numero }}</li>
+                <li><strong>Fecha de entrada:</strong> {{ reserva.fecha_inicio }}</li>
+                <li><strong>Fecha de salida:</strong> {{ reserva.fecha_fin }}</li>
+                <li><strong>Monto pagado:</strong> ${{ pago.monto }}</li>
+            </ul>
+            <a href="{% url 'home' %}">Volver al inicio</a>
+        </div>
+    </div>
+</body>
+</html>
+

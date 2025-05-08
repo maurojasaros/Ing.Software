@@ -136,12 +136,7 @@
     <div class="container">
         <h1>Confirmar Reserva</h1>
 
-        <p><strong>Habitación:</strong> {{ habitacion.tipo }}</p>
-        <p><strong>Precio por noche:</strong> ${{ habitacion.precio_por_noche }}</p>
-        <p><strong>Fecha de entrada:</strong> {{ fecha_entrada }}</p>
-        <p><strong>Fecha de salida:</strong> {{ fecha_salida }}</p>
-        <p><strong>Noches:</strong> {{ dias }}</p>
-        <p><strong>Total a pagar:</strong> ${{ total }}</p>
+        
 
         <form method="POST" action="{% url 'confirmar_reserva' habitacion.id_habitacion %}">
             {% csrf_token %}
@@ -153,6 +148,8 @@
             <p>Hasta: {{ fecha_salida }}</p>
             <p>Total a pagar: ${{ total }}</p>
             <button type="submit">Confirmar y reservar</button>
+            <a href="{% url 'iniciar_pago' %}">Pagar con Webpay</a>
+
         </form>
 
         {% if messages %}

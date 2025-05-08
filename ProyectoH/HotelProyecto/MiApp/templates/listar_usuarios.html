@@ -131,8 +131,8 @@
             {% for usuario in usuarios %}
                 <li>
                     <div><strong>Nombre:</strong> {{ usuario.nombre }}</div>
-                    <div><strong>Email:</strong> {{ usuario.email }}</div>
-                    <div><strong>Teléfono:</strong> {{ usuario.telefono }}</div>
+                    <div><strong>Email:</strong> {{ usuario.correo }}</div>
+                    <div><strong>Teléfono:</strong> {{ usuario.perfilusuario.telefono }}</div>
                     <div class="acciones">
                         <a href="{% url 'editar_usuario' usuario.id_usuario %}">Editar</a>
                         <a href="{% url 'eliminar_usuario' usuario.id_usuario %}">Eliminar</a>

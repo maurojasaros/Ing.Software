@@ -1,0 +1,45 @@
+https://github.com/maurojasaros/Ing.Software.git
+
+Durante el desarrollo del proyecto, se tomaron múltiples decisiones técnicas y metodológicas que guiaron el proceso iterativo de construcción del sistema. Esta sección documenta las principales etapas, entregables y aprendizajes obtenidos en el proceso:
+
+🔹 1. Análisis y Planificación Inicial
+Se elaboró un documento ERS (Especificación de Requisitos del Software) que permitió identificar las funcionalidades esenciales del sistema desde la perspectiva del cliente y del administrador.
+
+A partir de esto, se construyó un Product Backlog con 22 historias de usuario, categorizadas por épicas y priorizadas para una planificación ágil basada en Sprints.
+
+🔹 2. Diseño Conceptual y Arquitectónico
+Se desarrollaron los diagramas UML bajo el modelo 4+1:
+
+Casos de uso (vista de escenario)
+
+Diagramas de actividad (vista de procesos)
+
+Diagrama de clases (vista lógica)
+
+Modelo entidad-relación para la base de datos (vista de desarrollo)
+
+Estos artefactos permitieron establecer una arquitectura sólida orientada a objetos y alineada con los requerimientos funcionales.
+
+🔹 3. Prototipado de Interfaces
+Se diseñaron las vistas front-end en Figma para los distintos perfiles de usuario: cliente y administrador.
+
+Las vistas se enfocaron en la experiencia de usuario (UX) y en la coherencia con los flujos de los casos de uso.
+
+🔹 4. Desarrollo del MVP
+Se implementó un Producto Mínimo Viable (MVP) que integró backend y frontend.
+
+Se incorporaron todas las funcionalidades clave definidas en la documentación: consultas de disponibilidad, reservas, pagos, confirmaciones, notificaciones, gestión administrativa, autenticación, rendimiento y disponibilidad.
+
+🔹 5. Implementación Técnica
+Se configuraron los entornos de desarrollo, prueba y producción.
+
+Se utilizó un sistema de control de versiones (Git) y herramientas colaborativas como Trello.
+
+Se trabajó con buenas prácticas de seguridad (JWT, protección contra XSS y SQL Injection).
+
+Se realizaron pruebas de carga y validaciones funcionales para asegurar el rendimiento del sistema.
+
+🔹 6. Gestión y Reflexión
+Se priorizó el enfoque ágil mediante iteraciones continuas, revisión de entregables y mejora progresiva del sistema.
+
+La gestión del aprendizaje se evidenció en la evolución desde el análisis inicial hasta un sistema funcional completo, pasando por todas las fases del ciclo de vida del software.

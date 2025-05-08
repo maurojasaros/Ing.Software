@@ -136,6 +136,12 @@
 
             <p>¡Gracias por reservar con nosotros!</p>
             <a href="{% url 'home' %}">Volver al inicio</a>
+
+            <form method="post" action="{% url 'iniciar_pago' %}">
+                {% csrf_token %}
+                <input type="hidden" name="reserva_id" value="{{ reserva.id_reserva }}">
+                <button type="submit">Pagar con Webpay</button>
+            </form>
         </div>
     {% endif %}
 
@@ -144,6 +150,7 @@
         <ul class="messages">
             {% for message in messages %}
                 <li class="{{ message.tags }}">{{ message }}</li>
+                
             {% endfor %}
         </ul>
     </div>

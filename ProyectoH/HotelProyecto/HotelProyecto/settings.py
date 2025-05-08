@@ -134,3 +134,14 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# Webpay Plus - Modo API Key (recomendado)
+WEBPAY_COMMERCE_CODE = '597055555532'
+WEBPAY_API_KEY = '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C'
+WEBPAY_RETURN_URL = 'http://localhost:8000/pago/respuesta/'  # Cambia según entorno
+
+# Define el modo de integración: TEST o PRODUCTION
+WEBPAY_INTEGRATION_TYPE = 'TEST'
+

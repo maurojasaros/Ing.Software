@@ -102,42 +102,50 @@
 </head>
 <body>
 
-<div class="container">
-    <div class="form-container">
-        <h1>
-            {% if usuario.tipo_usuario == 'admin' %}
-                Gestión de todas las reservas
+    <div class="container">
+        <div class="form-container">
+            <h1>
+                {% if usuario.tipo_usuario == 'admin' %}
+                    Gestión de todas las reservas
+                {% else %}
+                    Reservas de {{ usuario.nombre }}
+                {% endif %}
+            </h1>
+    
+            {% if reservas %}
+                <ul>
+                    {% for reserva in reservas %}
+                        <li>
+                            {% if usuario.tipo_usuario == 'admin' %}
+                                <strong>Usuario:</strong> {{ reserva.usuario.nombre }} |
+                            {% endif %}
+                            <strong>Reserva ID:</strong> {{ reserva.id_reserva }} | <!-- Mostrar el ID de la reserva -->
+                            <strong>Habitación:</strong> {{ reserva.habitacion.numero }} |
+                            <strong>Estado:</strong> {{ reserva.estado_reserva }} |
+                            <strong>Desde:</strong> {{ reserva.fecha_inicio }} |
+                            <strong>Hasta:</strong> {{ reserva.fecha_fin }} |
+    
+                            {% if reserva.pagado %}
+                                <strong>Pago:</strong> <span style="color: green;">Pagado</span>
+                            {% else %}
+                                <strong>Pago:</strong> <span style="color: red;">No Pagado</span>
+                            {% endif %}
+    
+                            {% if reserva.estado_reserva != 'anulada' %}
+                                <a href="{% url 'confirmar_anulacion' reserva.id_reserva %}">
+                                    <button type="button">Anular Reserva</button>
+                                </a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
             {% else %}
-                Reservas de {{ usuario.nombre }}
+                <p>No hay reservas registradas.</p>
             {% endif %}
-        </h1>
-
-        {% if reservas %}
-            <ul>
-                {% for reserva in reservas %}
-                    <li>
-                        {% if usuario.tipo_usuario == 'admin' %}
-                            <strong>Usuario:</strong> {{ reserva.usuario.nombre }} |
-                        {% endif %}
-                        <strong>Habitación:</strong> {{ reserva.habitacion.numero }} |
-                        <strong>Estado:</strong> {{ reserva.estado_reserva }} |
-                        <strong>Desde:</strong> {{ reserva.fecha_inicio }} |
-                        <strong>Hasta:</strong> {{ reserva.fecha_fin }}
-                        {% if reserva.estado_reserva != 'anulada' %}
-                            <a href="{% url 'confirmar_anulacion' reserva.id_reserva %}">
-                                <button type="button">Anular Reserva</button>
-                            </a>
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No hay reservas registradas.</p>
-        {% endif %}
-
-        <a href="{% url 'home' %}"><button type="button">Volver al inicio</button></a>
+    
+            <a href="{% url 'home' %}"><button type="button">Volver al inicio</button></a>
+        </div>
     </div>
-</div>
-
-</body>
-</html>
+    </body>
+    </html>
+    

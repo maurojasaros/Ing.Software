@@ -28,6 +28,10 @@ urlpatterns = [
     path('enviar-mensaje/<int:id_destinatario>/', views.enviar_mensaje, name='enviar_mensaje'),
     path('mensajes-admin/', views.listar_mensajes, name='mensajes_admin'),
     path('enviar-mensaje-admin/', views.enviar_mensaje, name='enviar_mensaje_admin'),
+    path('iniciar-pago/', views.iniciar_pago, name='iniciar_pago'),
+    path('respuesta-pago/', views.respuesta_pago, name='respuesta_pago'),
+    path('retorno-pago/', views.retorno_pago, name='retorno_pago'),
+    
     
     
     

@@ -142,7 +142,7 @@
                 <ul>
                     {% for habitacion in habitaciones_disponibles %}
                         <li>
-                            Habitación {{ habitacion.numero }} - {{ habitacion.tipo }} (Disponible)
+                            Habitación {{ habitacion.numero }} - {{ habitacion.tipo }}
                             <form method="get" action="{% url 'reservar' habitacion.id_habitacion %}" style="display:inline;">
                                 <input type="hidden" name="fecha_entrada" value="{{ fecha_entrada }}">
                                 <input type="hidden" name="fecha_salida" value="{{ fecha_salida }}">
